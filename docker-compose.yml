@@ -3,6 +3,7 @@ version: '3.7'
 services:
     # imagem deojj
     deojj:
+        container_name: deojj_app
         build:
             args:
                 user: gustavo
@@ -19,6 +20,7 @@ services:
 
     # nginx
     nginx:
+        container_name: deojj_nginx
         image: nginx:alpine
         restart: unless-stopped
         ports:
@@ -32,7 +34,8 @@ services:
 
     # postgres
 
-    db_telebio:
+    db_deojj:
+        container_name: deojj_db
         image: postgres:12.0-alpine
         restart: unless-stopped
         environment:
@@ -41,11 +44,14 @@ services:
             POSTGRES_PASSWORD: ${DB_PASSWORD}
 
         volumes:
-            - "./.docker/dbdata:/var/lib/postgresql/data"
+            - deojj_db:/var/lib/postgresql/data
         ports:
             - 5438:5432
         networks:
             - microservices
+
+volumes:
+    deojj_db:
 
 networks:
     microservices:
