@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('aula', function (Blueprint $table) {
-            $table->bigInteger('id_aula')->primary();
+        Schema::create('turma', function (Blueprint $table) {
+            $table->bigInteger('id_turma')->primary();
             $table->bigInteger('prof_responsavel');
             $table->bigInteger('qt_aluno');
             $table->bigInteger('graduacao');

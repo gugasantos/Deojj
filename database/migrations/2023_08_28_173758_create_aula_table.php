@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('alunos_aula', function (Blueprint $table) {
+        Schema::create('aula', function (Blueprint $table) {
             $table->id();
             $table->string('nome_aula', 100);
             $table->bigInteger('id_aluno');
             $table->foreign('id_aluno')->references('id_aluno')->on('alunos');
-            $table->bigInteger('id_aula');
-            $table->foreign('id_aula')->references('id_aula')->on('aula');
+            $table->bigInteger('id_turma');
+            $table->foreign('id_turma')->references('id_turma')->on('turma');
             $table->date('dia_aula');
         });
 

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->bigInteger('grau');
             $table->boolean('prof');
             $table->boolean('ativo');
+            $table->binary('foto');
         });
 
         Schema::enableForeignKeyConstraints();

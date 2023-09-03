@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AlunosController;
+use App\Http\Controllers\AulaController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('alunos', AlunosController::class);
+Route::resource('aula', AulaController::class);
+Route::resource('dashboard', DashboardController::class);
+
+
