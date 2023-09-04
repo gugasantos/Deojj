@@ -30,7 +30,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-o
 4. access the containe:
 
     ```bash
-    docker-compose exec pizzaria bash
+    docker-compose exec deojj bash
     ```
 5. run composer install :
 
@@ -53,4 +53,10 @@ https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-o
     ```bash
     exit
     ```
-9. Exit container and Access http://127.0.0.1:8000
+9. run npm:
+
+    ```bash
+    npm run build
+    ```
+    
+10. Exit container and Access http://127.0.0.1:8000
