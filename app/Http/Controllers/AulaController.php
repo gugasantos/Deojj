@@ -11,7 +11,7 @@ class AulaController extends Controller
      */
     public function index()
     {
-        //
+        return view('actions.aula');
     }
 
     /**

@@ -107,7 +107,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'AdminLTE Preloader Image',
@@ -304,10 +304,12 @@ return [
             'icon' => 'nav-icon fas fa-fw fa-user',
         ],
         [
-            'text' => 'aula',
-            'url'  => 'aula',
-            'icon' => 'nav-icon fas fa-shopping-cart',
+            'text' => 'Aula',
+            'url'  => '/',
+            'icon' => 'nav-icon fas fa-calendar-day',
+
         ],
+
     ],
 
     /*
