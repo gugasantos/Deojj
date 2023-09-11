@@ -17,9 +17,20 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->dateTime('idade');
+            $table->string('telefone', 255);
+            $table->string('endereco', 255);
+            $table->foreignId('tp_faixa')->references('id')->on('faixas');
+            $table->bigInteger('grau')->nullable();
+            $table->boolean('prof')->nullable();
+            $table->boolean('ativo')->nullable();
+            $table->binary('foto')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::enableForeignKeyConstraints();
+
     }
 
     /**

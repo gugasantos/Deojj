@@ -13,7 +13,7 @@ class Faixa extends Model
     ];
     public function alunos(){
 
-        return $this->belongsTo(Alunos::class, 'tp_faixa');
+        return $this->belongsTo(User::class, 'tp_faixa');
 
     }
 

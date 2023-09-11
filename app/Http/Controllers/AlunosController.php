@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Alunos;
 use App\Models\Faixa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AlunosController extends Controller
@@ -14,20 +14,22 @@ class AlunosController extends Controller
     public function index()
     {
         $search = request('search');
+        $faixa = Faixa::all();
 
         if($search){
-            $data = Alunos::where(
+            $data = User::where(
                 'name',
                 'like', '%' . $search . '%'
             )->get();
         }
         else{
-            $data = Alunos::paginate(10);
+            $data = User::paginate(10);
         }
 
         return view('actions.alunos', [
             'alunos' => $data,
-            'search' => $search
+            'search' => $search,
+            'faixa' => $faixa
         ]);
     }
 

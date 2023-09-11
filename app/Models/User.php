@@ -21,6 +21,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'id',
+        'idade',
+        'telefone',
+        'endereco',
+        'tp_faixa',
+        "grau",
+        "prof",
+        "ativo",
+        'foto'
     ];
 
     /**

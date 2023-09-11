@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Faixa;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -20,7 +21,11 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $tp_faixas = Faixa::all();
+        #dd($tp_faixas);
+        return view('auth.register',[
+            'tp_faixas' => $tp_faixas
+        ]);
     }
 
     /**
@@ -34,13 +39,48 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'idade' => ['required', 'string'],
+            'telefone' => ['required', 'string'],
+            'endereco' => ['required', 'string']
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+
+        if($request->hasFile('foto') && $request->file('foto')->isValid()) {
+
+            $requestImage = $request->foto;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $requestImage->move(public_path('img/events'), $imageName);
+
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'idade' => $request->idade,
+                'telefone' => $request->telefone,
+                'endereco' => $request->endereco,
+                'tp_faixa' => $request->tp_faixas,
+                'grau' => $request->grau,
+                'foto' => $imageName
+
+            ]);
+
+        }
+        else{
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'idade' => $request->idade,
+                'telefone' => $request->telefone,
+                'endereco' => $request->endereco,
+                'tp_faixa' => $request->tp_faixas,
+                'grau' => $request->grau,
+            ]);
+        }
 
         event(new Registered($user));
 

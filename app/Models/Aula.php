@@ -14,7 +14,7 @@ class Aula extends Model
 
     public function alunos(){
 
-        return $this->hasMany(Alunos::class, 'id_aluno');
+        return $this->hasMany(User::class, 'id_aluno');
 
     }
     public function turma(){

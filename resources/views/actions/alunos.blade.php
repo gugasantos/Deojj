@@ -28,23 +28,23 @@
                     <th width='250'>Idade</th>
                     <th width='250'>Telefone</th>
                     <th width='530'>Endereço</th>
-                    <th width='250'>tp_faixa</th>
-                    <th width='250'>grau</th>
-                    <th width='250'>ativo</th>
+                    <th width='250'>Faixa</th>
+                    <th width='250'>Grau</th>
+                    <th width='250'>Ativo</th>
                 </tr>
                 <tbody>
                 @foreach ($alunos as $aluno)
                 <tr>
-                    <td>{{$aluno->nome}}</td>
+                    <td>{{$aluno->name}}</td>
                     <td>{{$aluno->idade}}</td>
                     <td>{{$aluno->telefone}}</td>
                     <td>{{$aluno->endereco}}</td>
-                    <td>{{$aluno->tp_faixa}}</td>
+                    <td>{{$faixa->find($aluno->tp_faixa)->nome}}</td>
                     <td>{{$aluno->grau}}</td>
                     <td>{{$aluno->ativo}}</td>
                     <td>
-                    <a href="{{route('client.edit',[$aluno->id])}}" class="btn btn-sm btn-info">Editar</a>
-                        <form class="d-inline" action="{{route('client.destroy',[$aluno->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir esse Aluno?')">
+                    <a href="{{route('alunos.edit',[$aluno->id])}}" class="btn btn-sm btn-info">Editar</a>
+                        <form class="d-inline" action="{{route('alunos.destroy',[$aluno->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir esse Aluno?')">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-sm btn-danger">Excluir</button>

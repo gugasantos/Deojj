@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome_aula', 100);
             $table->bigInteger('id_aluno');
-            $table->foreign('id_aluno')->references('id_aluno')->on('alunos');
+            $table->foreign('id_aluno')->references('id')->on('users');
             $table->bigInteger('id_turma');
             $table->foreign('id_turma')->references('id_turma')->on('turma');
             $table->date('dia_aula');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alunos_aula');
+        Schema::dropIfExists('aula');
     }
 };
