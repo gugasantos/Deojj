@@ -42,8 +42,8 @@
                     <td>{{$faixa->find($aluno->tp_faixa)->nome}}</td>
                     <td>{{$aluno->grau}}</td>
                     <td>{{$aluno->ativo}}</td>
-                    <td>
-                    <a href="{{route('alunos.edit',[$aluno->id])}}" class="btn btn-sm btn-info">Editar</a>
+                    <td class="btn-group">
+                        <a href="{{route('alunos.edit',[$aluno->id])}}" class="btn btn-sm btn-info rounded mr-1">Editar</a>
                         <form class="d-inline" action="{{route('alunos.destroy',[$aluno->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir esse Aluno?')">
                             @method('DELETE')
                             @csrf
