@@ -76,8 +76,8 @@
 
         <div class="mt-4">
             <x-input-label for="foto" :value="__('Foto')" />
-            <x-text-input id="foto" class="block mt-1 w-full" type="file" :value="old('foto')" />
-            <x-input-error :messages="$errors->get('foto')" class="mt-2" />
+            <input type="file" id="foto" name='foto' class="form-control-file" accept=".jpg, .jpeg, .png"/>
+            <x-input-error :messages="$errors->get('foto')" class="mt-2"/>
         </div>
 
 

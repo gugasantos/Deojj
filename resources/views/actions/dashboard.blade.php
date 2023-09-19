@@ -23,14 +23,7 @@
 
                 <tr>
 
-                    <td>
-                    <a href="}}" class="btn btn-sm btn-info">Editar</a>
-                        <form class="d-inline" action="" method="POST" onsubmit="return confirm('Tem certeza que deseja apagar esse aula?')">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn btn-sm btn-danger">Excluir</button>
-                        </form>
-                    </td>
+
                 </tr>
 
                 </tbody>

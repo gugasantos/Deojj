@@ -24,7 +24,7 @@ return new class extends Migration
             $table->bigInteger('grau')->nullable();
             $table->boolean('prof')->nullable();
             $table->boolean('ativo')->nullable();
-            $table->binary('foto')->nullable();
+            $table->string('foto')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

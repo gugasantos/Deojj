@@ -44,7 +44,6 @@ class RegisteredUserController extends Controller
             'endereco' => ['required', 'string']
         ]);
 
-
         if($request->hasFile('foto') && $request->file('foto')->isValid()) {
 
             $requestImage = $request->foto;
