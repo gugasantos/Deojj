@@ -13,7 +13,7 @@
 
 <div class="container-fluid">
     <div class="card">
-        <form action="client" method="GET">
+        <form action="alunos" method="GET">
             <input type="text" id="search" name="search" class="form-control" placeholder="Procurar Aluno">
         </form>
     </div>
@@ -71,5 +71,8 @@
         border-radius: 50%;
     }
 </style>
+@if ($page)
     {{$alunos->links('pagination::bootstrap-5') }}
+@endif
+
 @endsection

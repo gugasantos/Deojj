@@ -17,18 +17,27 @@ class AlunosController extends Controller
     {
         $search = request('search');
         $faixa = Faixa::all();
+        $page = True;
 
         if($search){
             $data = User::where(
                 'name',
                 'like', '%' . $search . '%'
+            )->orWhere(
+                'telefone',
+                'like', '%' . $search . '%'
             )->get();
+            $page = False;
         }
         else{
+
             $data = User::paginate(10);
         }
 
+
+
         return view('actions.alunos', [
+            'page' => $page,
             'alunos' => $data,
             'search' => $search,
             'faixa' => $faixa
