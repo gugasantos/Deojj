@@ -4,8 +4,8 @@
 
 @section('content_header')
     <h1>
-    Aulas
-    <a href="#" class="btn btn-sm btn-success">Gerar Aula</a>
+    Turma
+    <a href="{{route('turma.create')}}" class="btn btn-sm btn-success">Gerar nova Turma</a>
     </h1>
 @endsection
 
@@ -15,7 +15,7 @@
 
 <div class="card">
     <form action="client" method="GET">
-        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar Aula">
+        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar turma">
     </form>
 </div>
 

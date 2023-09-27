@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Deojj',
+    'title' => 'Deo Jiu-jitsu',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,8 @@ return [
     |
     */
 
-    'logo' => '<b>DEO</b>JJ',
+    'logo' => '<b>DEO</b> JIU-JITSU ',
+
     'logo_img' => 'vendor/adminlte/dist/img/deologo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -306,6 +307,12 @@ return [
         [
             'text' => 'Aula',
             'url'  => '/',
+            'icon' => 'nav-icon fas fa-calendar-day',
+
+        ],
+        [
+            'text' => 'Turma',
+            'url'  => 'turma',
             'icon' => 'nav-icon fas fa-calendar-day',
 
         ],

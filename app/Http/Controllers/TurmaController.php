@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faixa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class AulaController extends Controller
+class TurmaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('actions.aula');
+        return view('actions.turma');
     }
 
     /**
@@ -19,7 +21,10 @@ class AulaController extends Controller
      */
     public function create()
     {
-        return view('actions.createAula');
+        return view('actions.createTurma',[
+            'faixa' => Faixa::all(),
+            'prof_responsavel' => User::all()
+        ]);
     }
 
     /**

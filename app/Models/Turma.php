@@ -9,11 +9,17 @@ class Turma extends Model
 {
     protected $table = 'turma';
     protected $fillable = [
-        'id_turma', 'prof_responsavel', 'qt_aluno', 'graduacao', 'foto'
+        'id_turma', 'nome','horario','dias_da_semana','descricao', 'prof_responsavel', 'qt_aluno', 'foto'
     ];
     public function aula(){
 
         return $this->belongsTo(Aula::class, 'id_turma');
+
+    }
+
+    public function turma(){
+
+        return $this->hasOne(Turma::class, 'prof_responsavel');
 
     }
 
