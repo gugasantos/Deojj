@@ -9,7 +9,7 @@ class Aula extends Model
 {
     protected $table = 'aula';
     protected $fillable = [
-        'id', 'nome_aula', 'id_aluno', 'id_turma', 'dia_aula'
+        'id', 'nome_aula', 'id_aluno', 'id_turma', 'dia_aula', 'qt_alunos'
     ];
 
     public function alunos(){

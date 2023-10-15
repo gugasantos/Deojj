@@ -26,19 +26,19 @@
     <div class="card">
         <div class="card-body">
 
-            <form action="#" method="POST" class="form-horizontal">
+            <form action="{{route('turma.store')}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nome</label>
                     <div class="col-sm-10">
-                        <input type="text" name="nome" value="{{old('name')}}" class="form-control @error('nome') is-invalid @enderror">
+                        <input type="text" name="nome" value="{{old('nome')}}" class="form-control @error('nome') is-invalid @enderror">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Dias de Aula</label>
                     <div class="col-sm-10">
-                    <select class="js-example-basic-multiple col-sm-10 col-form-label" name="dias" multiple='multiple'>
+                    <select class="js-example-basic-multiple col-sm-10 col-form-label" name="dias[]" multiple='multiple'>
 
                         <option></option>
                         <option value="Domingo">Domingo</option>
@@ -69,7 +69,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Horario</label>
                     <div class="col-sm-10">
-                        <input type="text" name="dias_da_semana" value="{{old('dias_da_semana')}}" class="form-control @error('dias_da_semana') is-invalid @enderror">
+                        <input type="text" name="horario" value="{{old('horario')}}" class="form-control @error('horario') is-invalid @enderror">
                     </div>
                 </div>
 

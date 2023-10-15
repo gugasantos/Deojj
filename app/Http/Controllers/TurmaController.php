@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faixa;
+use App\Models\Turma;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TurmaController extends Controller
 {
@@ -13,7 +15,26 @@ class TurmaController extends Controller
      */
     public function index()
     {
-        return view('actions.turma');
+        $search = request('search');
+        $page = True;
+        if($search){
+            $data = Turma::where(
+                'nome',
+                'like', '%' . $search . '%'
+            )->orWhere(
+                'prof_responsavel',
+                'like', '%' . $search . '%'
+            )->get();
+            $page = False;
+        }
+        else{
+            $data = Turma::paginate(10);
+        }
+        return view('actions.turma',[
+            'prof_responsavel' => User::all(),
+            'turmas' => $data,
+            'page' => $page
+        ]);
     }
 
     /**
@@ -22,8 +43,7 @@ class TurmaController extends Controller
     public function create()
     {
         return view('actions.createTurma',[
-            'faixa' => Faixa::all(),
-            'prof_responsavel' => User::all()
+            'prof_responsavel' => User::all(),
         ]);
     }
 
@@ -32,7 +52,61 @@ class TurmaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only([
+            'nome',
+            'dias',
+            'horario',
+            'descricao',
+            'prof_responsavel',
+            'foto'
+        ]);
+
+        $validator = Validator::make($data, [
+            'nome' => ['required', 'string'],
+            'dias' => ['required'],
+            'horario' => ['required'],
+            'prof_responsavel' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('turma.create')
+                ->withErrors($validator)
+                ->withInput();
+        };
+
+        $turma = new Turma;
+
+        if($request->hasFile('foto') && $request->file('foto')->isValid()) {
+
+            $requestImage = $request->foto;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $requestImage->move(public_path('img/events'), $imageName);
+
+            $turma->nome = $data['nome'];
+            $turma->dias_da_semana = implode(', ',$data['dias']);
+            $turma->horario = $data['horario'];
+            $turma->descricao = $data['descricao'];
+            $turma->prof_responsavel = $data['prof_responsavel'];
+            $turma->foto = $imageName;
+
+        }
+        else{
+            $turma->nome = $data['nome'];
+            $turma->dias_da_semana = implode(',',$data['dias']);
+            $turma->horario = $data['horario'];
+            $turma->descricao = $data['descricao'];
+            $turma->prof_responsavel = $data['prof_responsavel'];
+        }
+
+
+        $turma->save();
+
+        return redirect()->route('turma.index');
+
     }
 
     /**
@@ -64,6 +138,9 @@ class TurmaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Turma::find($id);
+        $data->delete();
+
+        return redirect()->route('turma.index');
     }
 }

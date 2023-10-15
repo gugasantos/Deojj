@@ -300,21 +300,23 @@ return [
 
         ],
         [
-            'text' => 'Alunos',
-            'url'  => 'alunos',
-            'icon' => 'nav-icon fas fa-fw fa-user',
+            'text' => 'Turma',
+            'url'  => 'turma',
+            'icon' => 'nav-icon fas fa-fw fa-users',
+
         ],
+
         [
             'text' => 'Aula',
             'url'  => '/',
             'icon' => 'nav-icon fas fa-calendar-day',
 
         ],
-        [
-            'text' => 'Turma',
-            'url'  => 'turma',
-            'icon' => 'nav-icon fas fa-calendar-day',
 
+        [
+            'text' => 'Alunos',
+            'url'  => 'alunos',
+            'icon' => 'nav-icon fas fa-fw fa-user',
         ],
 
     ],

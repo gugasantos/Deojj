@@ -19,8 +19,9 @@ return new class extends Migration
             $table->bigInteger('id_aluno');
             $table->foreign('id_aluno')->references('id')->on('users');
             $table->bigInteger('id_turma');
-            $table->foreign('id_turma')->references('id_turma')->on('turma');
+            $table->foreign('id_turma')->references('id')->on('turma');
             $table->date('dia_aula');
+            $table->bigInteger('qt_alunos')->nullable();
         });
 
         Schema::enableForeignKeyConstraints();
