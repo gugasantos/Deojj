@@ -17,6 +17,9 @@ class TurmaController extends Controller
     {
         $search = request('search');
         $page = True;
+
+        $professor = User::all();
+
         if($search){
             $data = Turma::where(
                 'nome',
@@ -33,7 +36,8 @@ class TurmaController extends Controller
         return view('actions.turma',[
             'prof_responsavel' => User::all(),
             'turmas' => $data,
-            'page' => $page
+            'page' => $page,
+            'professor' => $professor
         ]);
     }
 

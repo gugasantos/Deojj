@@ -4,8 +4,8 @@
 
 @section('content_header')
     <h1>
-    Aulas
-    <a href="#" class="btn btn-sm btn-success">Gerar Aula</a>
+    Aula
+    <a href="{{route('create')}}" class="btn btn-sm btn-success">Gerar nova Aula</a>
     </h1>
 @endsection
 
@@ -13,37 +13,63 @@
 @section('content')
 
 
-<div class="card">
-    <form action="client" method="GET">
-        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar Aula">
-    </form>
-</div>
+<div class="container-fluid">
+    <div class="card">
+        <form action="alunos" method="GET">
+            <input type="text" id="search" name="search" class="form-control" placeholder="Procurar Turma">
+        </form>
+    </div>
 
-<div class="card">
-    <div class="table-responsive-sm card-body">
-        <table class="table table-hover">
-            <thead>
-                <tr>
+    <div class="card">
+        <div class="table-responsive-sm card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th width='250'>Foto</th>
+                        <th width='250'>Nome</th>
+                        <th width='250'>Horario</th>
+                        <th width='250'>Descricao</th>
+                        <th width='250'>Professor Responsável</th>
+                        <th width='250'>Nº de alunos</th>
+                    </tr>
+                    <tbody>
 
-                </tr>
-                <tbody>
-
-                <tr>
-
-                    <td>
-                    <a href="}}" class="btn btn-sm btn-info">Editar</a>
-                        <form class="d-inline" action="" method="POST" onsubmit="return confirm('Tem certeza que deseja apagar esse aula?')">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn btn-sm btn-danger">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-
-                </tbody>
-            </thead>
-        </table>
+                    @foreach ($aulas as $aula)
+                    <tr>
+                        <td>
+                            @if ($aula->foto)
+                                    <img  width="85px" height="85px" src="/img/events/{{$turma->foto}}" alt="foto">
+                            @endif
+                        </td>
+                        <td>{{$aula->nome_aula}}</td>
+                        <td>{{$aula->horario}}</td>
+                        <td>{{$turma->descricao}}</td>
+                        <td>{{$professor->find($turma->prof_responsavel)->name}}</td>
+                        <td>{{$turma->qt_aluno}}</td>
+                        <td class="btn-group mr-2" role="group" aria-label="acoes">
+                            <form action="{{route('check_up',[$aula->id])}}" method="POST">
+                                @method('POST')
+                                @csrf
+                                <button class="btn btn-warning btn-sm" style="white-space: nowrap;">Check-Up</button>
+                            </form>
+                            <a href="#" class="btn btn-info btn-sm">Editar</a>
+                            <form class="d-inline" action="{{route('destroy',[$turma->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir essa Turma?')">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-danger btn-sm">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </thead>
+            </table>
+        </div>
     </div>
 </div>
+{{--
+@if ($page)
+    {{$turmas->links('pagination::bootstrap-5') }}
+@endif --}}
 
 @endsection

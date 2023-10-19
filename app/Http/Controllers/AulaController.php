@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aula;
+use App\Models\Turma;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AulaController extends Controller
@@ -11,7 +14,14 @@ class AulaController extends Controller
      */
     public function index()
     {
-        return view('actions.aula');
+        $aula = Aula::all();
+        $turma = Turma::all();
+        $usuario = User::all();
+        return view('actions.aula',[
+            'aulas' => $aula,
+            'turmas' => $turma,
+            'professor' => $usuario
+        ]);
     }
 
     /**
@@ -19,7 +29,14 @@ class AulaController extends Controller
      */
     public function create()
     {
-        return view('actions.createAula');
+
+        $turma = Turma::all();
+        $usuario = User::all();
+
+        return view('actions.createAula',[
+            'turmas' => $turma,
+            'usuarios' => $usuario
+        ]);
     }
 
     /**
@@ -30,6 +47,10 @@ class AulaController extends Controller
         //
     }
 
+    public function check_up(string $id)
+    {
+        return redirect()->route('index');
+    }
     /**
      * Display the specified resource.
      */

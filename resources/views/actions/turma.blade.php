@@ -46,7 +46,7 @@
                         <td>{{$turma->dias_da_semana}}</td>
                         <td>{{$turma->horario}}</td>
                         <td>{{$turma->descricao}}</td>
-                        <td>{{$turma->prof_responsavel}}</td>
+                        <td>{{$professor->find($turma->prof_responsavel)->name}}</td>
                         <td>{{$turma->qt_aluno}}</td>
                         <td class="btn-group mr-2" role="group" aria-label="acoes">
                             <a href="#" class="btn btn-info btn-sm">Editar</a>
