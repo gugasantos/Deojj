@@ -26,7 +26,7 @@
                 <thead>
                     <tr>
                         <th width='250'>Foto</th>
-                        <th width='250'>Nome</th>
+                        <th width='250'>Conteúdo</th>
                         <th width='250'>Horario</th>
                         <th width='250'>Descricao</th>
                         <th width='250'>Professor Responsável</th>
@@ -37,15 +37,15 @@
                     @foreach ($aulas as $aula)
                     <tr>
                         <td>
-                            @if ($aula->foto)
-                                    <img  width="85px" height="85px" src="/img/events/{{$turma->foto}}" alt="foto">
+                            @if ($turmas->find($aula->id_turma)->foto)
+                                    <img  width="85px" height="85px" src="/img/events/{{$turmas->find($aula->id_turma)->foto}}" alt="foto">
                             @endif
                         </td>
                         <td>{{$aula->nome_aula}}</td>
-                        <td>{{$aula->horario}}</td>
-                        <td>{{$turma->descricao}}</td>
-                        <td>{{$professor->find($turma->prof_responsavel)->name}}</td>
-                        <td>{{$turma->qt_aluno}}</td>
+                        <td>{{$turmas->find($aula->id_turma)->horario}}</td>
+                        <td>{{$turmas->find($aula->id_turma)->descricao}}</td>
+                        <td>{{$professor->find($turmas->find($aula->id_turma)->prof_responsavel)->name}}</td>
+                        <td>{{$turmas->find($aula->id_turma)->qt_aluno}}</td>
                         <td class="btn-group mr-2" role="group" aria-label="acoes">
                             <form action="{{route('check_up',[$aula->id])}}" method="POST">
                                 @method('POST')
@@ -53,7 +53,7 @@
                                 <button class="btn btn-warning btn-sm" style="white-space: nowrap;">Check-Up</button>
                             </form>
                             <a href="#" class="btn btn-info btn-sm">Editar</a>
-                            <form class="d-inline" action="{{route('destroy',[$turma->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir essa Turma?')">
+                            <form class="d-inline" action="{{route('destroy',[$aula->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir essa Turma?')">
                                 @method('DELETE')
                                 @csrf
                                 <button class="btn btn-danger btn-sm">Excluir</button>

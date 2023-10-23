@@ -6,6 +6,7 @@ use App\Models\Aula;
 use App\Models\Turma;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AulaController extends Controller
 {
@@ -17,6 +18,7 @@ class AulaController extends Controller
         $aula = Aula::all();
         $turma = Turma::all();
         $usuario = User::all();
+
         return view('actions.aula',[
             'aulas' => $aula,
             'turmas' => $turma,
@@ -44,7 +46,28 @@ class AulaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only([
+            'turma',
+            'nome',
+        ]);
+
+        $validator = Validator::make($data, [
+            'turma' => ['required'],
+            'nome' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('create')
+                ->withErrors($validator)
+                ->withInput();
+        };
+
+        $aula = New Aula;
+
+        $aula->nome_aula = $data['nome'];
+        $aula->id_turma = $data['turma'];
+
+        $aula->save();
     }
 
     public function check_up(string $id)
