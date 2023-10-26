@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faixa;
+use App\Models\Turma;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class AlunosController extends Controller
         $search = request('search');
         $faixa = Faixa::all();
         $page = True;
+        $turma = Turma::all();
 
         if($search){
             $data = User::where(
@@ -40,7 +42,8 @@ class AlunosController extends Controller
             'page' => $page,
             'alunos' => $data,
             'search' => $search,
-            'faixa' => $faixa
+            'faixa' => $faixa,
+            'turmas' => $turma
         ]);
     }
 
@@ -78,10 +81,12 @@ class AlunosController extends Controller
     {
         $data = User::find($id);
         $faixa = faixa::all();
+        $turma = Turma::all();
 
         return view('actions.editAluno', [
             'aluno' => $data,
-            'faixas' => $faixa
+            'faixas' => $faixa,
+            'turmas' => $turma
         ]);
 
         return redirect()->route('alunos.index');
@@ -101,6 +106,7 @@ class AlunosController extends Controller
                 'endereco',
                 'faixa',
                 'grau',
+                'turma'
             ]);
             $validator = Validator::make($data, [
                 'name' => ['required', 'string', 'max:255'],
@@ -108,7 +114,8 @@ class AlunosController extends Controller
                 'telefone' => ['required', 'string'],
                 'endereco' => ['required', 'string'],
                 'faixa' => ['required', 'string'],
-                'grau' => ['required', 'integer']
+                'grau' => ['required', 'integer'],
+                'turma' => ['string']
 
             ]);
             if ($validator->fails()) {
@@ -123,6 +130,7 @@ class AlunosController extends Controller
         $aluno->endereco = $data['endereco'];
         $aluno->tp_faixa = $data['faixa'];
         $aluno->grau = $data['grau'];
+        $aluno->id_turma = $data['turma'];
 
 
         if($request->foto){

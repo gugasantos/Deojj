@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
 
     Route::resource('alunos', AlunosController::class);
-    Route::post('/check_up', [AulaController::class, 'check_up'])->name('check_up');;
+    Route::get('/check_up', [AulaController::class, 'check_up'])->name('check_up');;
     Route::resource('/', AulaController::class);
     Route::resource('turma', TurmaController::class);
 

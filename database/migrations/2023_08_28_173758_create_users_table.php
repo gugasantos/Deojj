@@ -20,9 +20,11 @@ return new class extends Migration
             $table->dateTime('idade');
             $table->string('telefone', 255);
             $table->string('endereco', 255);
-            $table->foreignId('tp_faixa')->references('id')->on('faixas');
+            $table->bigInteger('tp_faixa');
+            $table->foreign('tp_faixa')->references('id')->on('faixas');
             $table->bigInteger('grau')->nullable();
-            $table->boolean('prof')->nullable();
+            $table->bigInteger('id_turma')->nullable();
+            $table->foreign('id_turma')->references('id')->on('turma');
             $table->boolean('ativo')->nullable();
             $table->string('foto')->nullable();
             $table->rememberToken();

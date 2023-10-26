@@ -15,13 +15,11 @@ return new class extends Migration
 
         Schema::create('turma', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
+            $table->string('nome')->nullable();
             $table->string('horario');
             $table->string('dias_da_semana');
             $table->string('descricao')->nullable();
             $table->bigInteger('prof_responsavel');
-            $table->foreign('prof_responsavel')->references('id')->on('users');
-            $table->bigInteger('qt_aluno')->nullable();
             $table->string('foto')->nullable();
         });
 

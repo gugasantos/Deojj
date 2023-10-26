@@ -4,7 +4,7 @@
 
 @section('content_header')
     <h1>
-    Alunos
+    Presença da turma
     </h1>
 @endsection
 
@@ -30,7 +30,6 @@
                         <th width='250'>Endereço</th>
                         <th width='250'>Faixa</th>
                         <th width='250'>Grau</th>
-                        <th width='250'>Turma</th>
                     </tr>
                     <tbody>
 
@@ -45,19 +44,29 @@
                         <td>{{date('d/m/y', strtotime($aluno->idade))}}</td>
                         <td>{{$aluno->telefone}}</td>
                         <td>{{$aluno->endereco}}</td>
-                        <td>{{$faixa->find($aluno->tp_faixa)->nome}}</td>
+                        <td>{{$faixa->find($aluno->tp_faixa)->name}}</td>
                         <td>{{$aluno->grau}}</td>
-                        <td>{{$turmas->find($aluno->id_turma)->nome}}</td>
                         <td class="btn-group mr-2" role="group" aria-label="acoes">
-                            <a href="" class="btn btn-warning btn-sm">Carteirinha</a>
-
-                            <a href="{{route('alunos.edit',[$aluno->id])}}" class="btn btn-info btn-sm">Editar</a>
-                            <form class="d-inline" action="{{route('alunos.destroy',[$aluno->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir esse Aluno?')">
-                                @method('DELETE')
-                                @csrf
-                                <button class="btn btn-danger btn-sm">Excluir</button>
-                            </form>
+                            <button id ='presente' href="" class="btn btn-warning btn-sm">Ausente</button>
                         </td>
+
+                        <script>
+                            const botao = document.getElementById('presente');
+                            let presente = false; // Variável para rastrear o estado do botão
+                            document.getElementById('presente').addEventListener('click', function() {
+                                if (presente) {
+                                    this.classList.remove('btn-warning');
+                                    this.classList.add('btn-primary');
+                                    this.textContent = 'Presente'; // Mudar o texto do botão
+                                } else {
+                                    botao.classList.remove('btn-primary');
+                                    botao.classList.add('btn-warning');
+                                    botao.textContent = 'Ausente';
+                                }
+
+                                presente = !presente;
+                            });
+                        </script>
                     </tr>
                     @endforeach
                     </tbody>

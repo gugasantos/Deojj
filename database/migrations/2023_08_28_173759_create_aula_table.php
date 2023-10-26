@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('aula', function (Blueprint $table) {
             $table->id();
             $table->string('nome_aula', 100);
-            $table->bigInteger('id_aluno')->nullable();;
-            $table->foreign('id_aluno')->references('id')->on('users');
+            $table->bigInteger('id_aluno')->nullable();
             $table->bigInteger('id_turma');
             $table->foreign('id_turma')->references('id')->on('turma');
             $table->date('dia_aula')->nullable();;

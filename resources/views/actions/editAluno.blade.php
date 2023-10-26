@@ -90,6 +90,31 @@
                 </div>
 
                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Turma</label>
+                    <div class="col-sm-10">
+                        <select class="js-example-basic-single col-sm-10 col-form-label" name="turma">
+                            <option></option>
+                            @foreach ($turmas as $turma)
+                                <option value="{{$turma->id}}">{{$turma->nome}}</option>
+                            @endforeach
+                        </select>
+
+                        {{-- script que é sempre necessário --}}
+                        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+                        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+                        <script>
+                            $('.js-example-basic-single').select2({
+                                allowClear: true,
+                                theme: "classic",
+                                align-items: center,
+                             });
+                        </script>
+                        <link rel="stylesheet"
+                            href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
                         <input type="submit" value="Atualizar" class="btn btn-success">

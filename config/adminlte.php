@@ -254,7 +254,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => '/',
+    'dashboard_url' => 'turma',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -292,13 +292,13 @@ return [
 
     'menu' => [
         // Navbar items:
-        ['header' => 'Painel'],
-        [
-            'text'    => 'Dashboard',
-            'url'     => 'dashboard',
-            'icon'    => 'nav-icon fas fa-tachometer-alt',
+        // ['header' => 'Painel'],
+        // [
+        //     'text'    => 'Dashboard',
+        //     'url'     => 'dashboard',
+        //     'icon'    => 'nav-icon fas fa-tachometer-alt',
 
-        ],
+        // ],
         [
             'text' => 'Turma',
             'url'  => 'turma',

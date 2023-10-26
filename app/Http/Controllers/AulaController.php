@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aula;
+use App\Models\Faixa;
 use App\Models\Turma;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -68,11 +69,41 @@ class AulaController extends Controller
         $aula->id_turma = $data['turma'];
 
         $aula->save();
+
+        return redirect()->route('index');
     }
 
-    public function check_up(string $id)
+    public function check_up()
     {
-        return redirect()->route('index');
+        $search = request('search');
+        $faixa = Faixa::all();
+        $page = True;
+        $turma = Turma::all();
+
+        if($search){
+            $data = User::where(
+                'name',
+                'like', '%' . $search . '%'
+            )->orWhere(
+                'telefone',
+                'like', '%' . $search . '%'
+            )->get();
+            $page = False;
+        }
+        else{
+
+            $data = User::paginate(10);
+        }
+
+
+
+        return view('actions.checkupAula', [
+            'page' => $page,
+            'alunos' => $data,
+            'search' => $search,
+            'faixa' => $faixa,
+            'turmas' => $turma
+        ]);
     }
     /**
      * Display the specified resource.

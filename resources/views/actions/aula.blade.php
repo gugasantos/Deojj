@@ -47,16 +47,12 @@
                         <td>{{$professor->find($turmas->find($aula->id_turma)->prof_responsavel)->name}}</td>
                         <td>{{$turmas->find($aula->id_turma)->qt_aluno}}</td>
                         <td class="btn-group mr-2" role="group" aria-label="acoes">
-                            <form action="{{route('check_up',[$aula->id])}}" method="POST">
-                                @method('POST')
-                                @csrf
-                                <button class="btn btn-warning btn-sm" style="white-space: nowrap;">Check-Up</button>
-                            </form>
+                            <a href="{{route('check_up',[$aula->id])}}" style="white-space: nowrap;" class="btn btn-warning btn-sm style="white-space: nowrap;" >Check-Up</a>
                             <a href="#" class="btn btn-info btn-sm">Editar</a>
-                            <form class="d-inline" action="{{route('destroy',[$aula->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir essa Turma?')">
+                            <form class="d-inline" action="#" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir essa Turma?')">
                                 @method('DELETE')
                                 @csrf
-                                <button class="btn btn-danger btn-sm">Excluir</button>
+                                <button class="btn btn-danger btn-sm">Finalizar</button>
                             </form>
                         </td>
                     </tr>
