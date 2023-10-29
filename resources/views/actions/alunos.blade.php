@@ -47,7 +47,11 @@
                         <td>{{$aluno->endereco}}</td>
                         <td>{{$faixa->find($aluno->tp_faixa)->nome}}</td>
                         <td>{{$aluno->grau}}</td>
-                        <td>{{$turmas->find($aluno->id_turma)->nome}}</td>
+                        @if ($aluno->id_turma)
+                            <td>{{$turmas->find($aluno->id_turma)->nome}}</td>
+                        @else
+                            <td></td>
+                        @endif
                         <td class="btn-group mr-2" role="group" aria-label="acoes">
                             <a href="" class="btn btn-warning btn-sm">Carteirinha</a>
 

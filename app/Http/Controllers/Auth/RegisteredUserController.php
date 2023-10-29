@@ -80,7 +80,7 @@ class RegisteredUserController extends Controller
                 'grau' => $request->grau,
             ]);
         }
-
+        dd($user->id_turma);
         event(new Registered($user));
 
         Auth::login($user);

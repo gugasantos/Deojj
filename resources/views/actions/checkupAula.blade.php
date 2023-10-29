@@ -13,7 +13,7 @@
 
 <div class="container-fluid">
     <div class="card">
-        <form action="alunos" method="GET">
+        <form action="check_up" method="GET">
             <input type="text" id="search" name="search" class="form-control" placeholder="Procurar Aluno">
         </form>
     </div>

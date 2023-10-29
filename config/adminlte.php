@@ -308,7 +308,7 @@ return [
 
         [
             'text' => 'Aula',
-            'url'  => '/',
+            'url'  => 'aula',
             'icon' => 'nav-icon fas fa-calendar-day',
 
         ],

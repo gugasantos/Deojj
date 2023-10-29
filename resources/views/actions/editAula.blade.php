@@ -4,7 +4,7 @@
 
 @section('content_header')
     <h1>
-    Gerar Aula
+    Editar Aula
     </h1>
 @endsection
 
@@ -26,13 +26,14 @@
     <div class="card">
         <div class="card-body">
 
-            <form action="{{route('aula.store')}}" method="POST" class="form-horizontal">
+            <form action="{{route('aula.update',[$aula->id])}}" method="POST" class="form-horizontal">
+                @method('PUT')
                 @csrf
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Turma</label>
                     <div class="col-sm-10">
                         <select class="js-example-basic-single col-sm-10 col-form-label" name="turma">
-                            <option></option>
+                            <option value="{{$aula->id_turma}}" selected>{{$turmas->find($aula->id_turma)->nome}}</option>
                             @foreach ($turmas as $turma)
                                 <option value="{{$turma->id}}">{{$turma->nome}}</option>
                             @endforeach
@@ -55,7 +56,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nome da Aula</label>
                     <div class="col-sm-10">
-                        <input type="text" name="nome" value="{{old('nome')}}" class="form-control @error('nome') is-invalid @enderror">
+                        <input type="text" name="nome" value="{{$aula->nome_aula}}" class="form-control @error('nome') is-invalid @enderror">
                     </div>
                 </div>
 
@@ -63,7 +64,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
-                        <input type="submit" value="Criar" class="btn btn-success">
+                        <input type="submit" value="Editar" class="btn btn-success">
                         <a href="{{route('aula.index')}}" class="btn btn-danger">Voltar</a>
                     </div>
                 </div>

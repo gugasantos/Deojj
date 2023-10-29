@@ -3,6 +3,20 @@
 @section('title', 'Alunos')
 
 @section('content_header')
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            <h5>
+                <i class="icon fas fa-ban"></i>
+                Ocorreu um erro
+            </h5>
+            @foreach ($errors->all() as $error )
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+
+    @endif
     <h1>
     Turma
     <a href="{{route('turma.create')}}" class="btn btn-sm btn-success">Gerar nova Turma</a>
@@ -15,7 +29,7 @@
 
 <div class="container-fluid">
     <div class="card">
-        <form action="alunos" method="GET">
+        <form action="turma" method="GET">
             <input type="text" id="search" name="search" class="form-control" placeholder="Procurar Turma">
         </form>
     </div>
@@ -46,10 +60,10 @@
                         <td>{{$turma->dias_da_semana}}</td>
                         <td>{{$turma->horario}}</td>
                         <td>{{$turma->descricao}}</td>
-                        <td>{{$professor->find($turma->prof_responsavel)->name}}</td>
-                        <td>{{$turma->qt_aluno}}</td>
+                        <td>{{$aluno->find($turma->prof_responsavel)->name}}</td>
+                        <td>{{$aluno->where('id_turma', $turma->id)->count()}}</td>
                         <td class="btn-group mr-2" role="group" aria-label="acoes">
-                            <a href="#" class="btn btn-info btn-sm">Editar</a>
+                            <a href="{{route('turma.edit',[$turma->id])}}" class="btn btn-info btn-sm">Editar</a>
                             <form class="d-inline" action="{{route('turma.destroy',[$turma->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir essa Turma?')">
                                 @method('DELETE')
                                 @csrf

@@ -148,6 +148,7 @@ class AlunosController extends Controller
 
         $aluno->save();
 
+
         return redirect()->route('alunos.index');
 
 
