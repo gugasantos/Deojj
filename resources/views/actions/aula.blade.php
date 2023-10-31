@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>
     Aula
-    <a href="{{route('create')}}" class="btn btn-sm btn-success">Gerar nova Aula</a>
+    <a href="{{route('aula.create')}}" class="btn btn-sm btn-success">Gerar nova Aula</a>
     </h1>
 @endsection
 
@@ -15,8 +15,8 @@
 
 <div class="container-fluid">
     <div class="card">
-        <form action="alunos" method="GET">
-            <input type="text" id="search" name="search" class="form-control" placeholder="Procurar Turma">
+        <form action="/" method="GET">
+            <input type="text" 0id="search" name="search" class="form-control" placeholder="Procurar Aula">
         </form>
     </div>
 
@@ -48,8 +48,8 @@
                         <td>{{$turmas->find($aula->id_turma)->qt_aluno}}</td>
                         <td class="btn-group mr-2" role="group" aria-label="acoes">
                             <a href="{{route('check_up',[$aula->id])}}" style="white-space: nowrap;" class="btn btn-warning btn-sm style="white-space: nowrap;" >Check-Up</a>
-                            <a href="#" class="btn btn-info btn-sm">Editar</a>
-                            <form class="d-inline" action="#" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir essa Turma?')">
+                            <a href="{{route('aula.edit',[$aula->id])}}" class="btn btn-info btn-sm">Editar</a>
+                            <form class="d-inline" action="{{route('aula.destroy',[$aula->id])}}" method="POST" onsubmit="return confirm('Tem certeza que deseja exluir essa Turma?')">
                                 @method('DELETE')
                                 @csrf
                                 <button class="btn btn-danger btn-sm">Finalizar</button>

@@ -16,12 +16,26 @@ class AulaController extends Controller
      */
     public function index()
     {
-        $aula = Aula::all();
+        $search = request('search');
         $turma = Turma::all();
+        $page = True;
         $usuario = User::all();
 
+        if($search){
+            $data = Aula::where(
+                'nome_aula',
+                'like', '%' . $search . '%'
+            )->get();
+            $page = False;
+        }
+        else{
+
+            $data = Aula::paginate(10);
+        }
+
         return view('actions.aula',[
-            'aulas' => $aula,
+            'page' => $page,
+            'aulas' => $data,
             'turmas' => $turma,
             'professor' => $usuario
         ]);
@@ -70,10 +84,10 @@ class AulaController extends Controller
 
         $aula->save();
 
-        return redirect()->route('index');
+        return redirect()->route('aula.index');
     }
 
-    public function check_up()
+    public function check_up(string $id)
     {
         $search = request('search');
         $faixa = Faixa::all();
@@ -83,16 +97,14 @@ class AulaController extends Controller
         if($search){
             $data = User::where(
                 'name',
-                'like', '%' . $search . '%'
-            )->orWhere(
-                'telefone',
-                'like', '%' . $search . '%'
-            )->get();
+                'like', '%' . $search . '%',
+            )->where('id_turma', $id);
+
+
             $page = False;
         }
         else{
-
-            $data = User::paginate(10);
+            $data = User::where('id_turma',$id)->paginate(10);
         }
 
 
@@ -118,7 +130,15 @@ class AulaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $aula = Aula::find($id);
+        $turma = Turma::all();
+
+        return view('actions.editAula', [
+            'turmas' => $turma,
+            'aula' => $aula
+        ]);
+
+        return redirect()->route('aula.index');
     }
 
     /**
@@ -126,7 +146,38 @@ class AulaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $aula = Aula::find($id);
+
+        if($aula){
+            $data = $request->only([
+                'turma',
+                'nome',
+            ]);
+
+            $validator = Validator::make($data, [
+                'turma' => ['required'],
+                'nome' => ['required']
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->route('create')
+                    ->withErrors($validator)
+                    ->withInput();
+            };
+
+            $aula->nome_aula = $data['nome'];
+            $aula->id_turma = $data['turma'];
+
+            $aula->save();
+
+            return redirect()->route('aula.index');
+        }
+
+
+
+
+
+
     }
 
     /**
@@ -134,6 +185,10 @@ class AulaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $aula = Aula::find($id);
+        $aula->delete();
+
+        return redirect()->route('aula.index');
+
     }
 }

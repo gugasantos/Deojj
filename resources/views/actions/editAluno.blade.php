@@ -93,7 +93,12 @@
                     <label class="col-sm-2 col-form-label">Turma</label>
                     <div class="col-sm-10">
                         <select class="js-example-basic-single col-sm-10 col-form-label" name="turma">
-                            <option></option>
+                            @if ($aluno->id_turma)
+                                <option value="{{ $aluno->id_turma }}" >{{ $turmas->find($aluno->id_turma)->nome}}</option>
+                            @else
+                                <option></option>
+                            @endif
+
                             @foreach ($turmas as $turma)
                                 <option value="{{$turma->id}}">{{$turma->nome}}</option>
                             @endforeach

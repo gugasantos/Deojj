@@ -22,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
 
     Route::resource('alunos', AlunosController::class);
-    Route::get('/check_up', [AulaController::class, 'check_up'])->name('check_up');;
-    Route::resource('/', AulaController::class);
+    Route::get('/check_up/{id}', [AulaController::class, 'check_up'])->name('check_up');;
+    Route::resource('aula', AulaController::class);
     Route::resource('turma', TurmaController::class);
 
     Route::resource('dashboard', DashboardController::class);
