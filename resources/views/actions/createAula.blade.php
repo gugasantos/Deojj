@@ -42,11 +42,13 @@
                         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
                         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
                         <script>
-                            $('.js-example-basic-single').select2({
-                                allowClear: true,
-                                theme: "classic",
-                                align-items: center,
+                             $(document).ready(function() {
+                                $('.js-example-basic-single').select2({
+                                    allowClear: true,
+                                    theme: "classic",
+                                    align-items: center,
                              });
+                            });
                         </script>
                         <link rel="stylesheet"
                             href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">

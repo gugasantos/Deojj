@@ -119,7 +119,7 @@
                     <label class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
                         <input type="submit" value="Criar" class="btn btn-success">
-                        <a href="#" class="btn btn-danger">Voltar</a>
+                        <a href="{{route('turma.index')}}"class="btn btn-danger">Voltar</a>
                     </div>
                 </div>
 

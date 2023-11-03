@@ -22,7 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
 
     Route::resource('alunos', AlunosController::class);
-    Route::get('/check_up/{id}', [AulaController::class, 'check_up'])->name('check_up');;
+    Route::get('/check_up/{id}', [AulaController::class, 'check_up'])->name('check_up');
+    Route::redirect('/', '/aula'); // Redireciona a rota de origem para 'aulas'
     Route::resource('aula', AulaController::class);
     Route::resource('turma', TurmaController::class);
 

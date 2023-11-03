@@ -115,7 +115,6 @@ class AlunosController extends Controller
                 'endereco' => ['required', 'string'],
                 'faixa' => ['required', 'string'],
                 'grau' => ['required', 'integer'],
-                'turma' => ['string']
 
             ]);
             if ($validator->fails()) {

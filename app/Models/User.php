@@ -27,7 +27,7 @@ class User extends Authenticatable
         'endereco',
         'tp_faixa',
         "grau",
-        "prof",
+        "id_turma",
         "ativo",
         'foto'
     ];

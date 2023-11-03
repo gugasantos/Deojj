@@ -254,7 +254,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'turma',
+    'dashboard_url' => 'aula',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -308,7 +308,7 @@ return [
 
         [
             'text' => 'Aula',
-            'url'  => '/',
+            'url'  => 'aula',
             'icon' => 'nav-icon fas fa-calendar-day',
 
         ],

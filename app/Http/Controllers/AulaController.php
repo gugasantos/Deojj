@@ -72,7 +72,7 @@ class AulaController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('create')
+            return redirect()->route('aula.create')
                 ->withErrors($validator)
                 ->withInput();
         };
@@ -81,6 +81,7 @@ class AulaController extends Controller
 
         $aula->nome_aula = $data['nome'];
         $aula->id_turma = $data['turma'];
+        $aula->finalizada = False;
 
         $aula->save();
 
@@ -93,6 +94,10 @@ class AulaController extends Controller
         $faixa = Faixa::all();
         $page = True;
         $turma = Turma::all();
+
+        $teste2 = User::all();
+        $teste = User::where('id_turma',$id)->get();
+        dd($teste);
 
         if($search){
             $data = User::where(
@@ -160,7 +165,7 @@ class AulaController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect()->route('create')
+                return redirect()->route('aula.create')
                     ->withErrors($validator)
                     ->withInput();
             };
@@ -179,14 +184,15 @@ class AulaController extends Controller
 
 
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         $aula = Aula::find($id);
-        $aula->delete();
+        $aula->finalizada = True;
+
+        $aula->update();
 
         return redirect()->route('aula.index');
 
