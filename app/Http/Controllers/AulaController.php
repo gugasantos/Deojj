@@ -152,6 +152,41 @@ class AulaController extends Controller
     public function update(Request $request, string $id)
     {
         $aula = Aula::find($id);
+<<<<<<< HEAD
+=======
+
+        if($aula){
+            $data = $request->only([
+                'turma',
+                'nome',
+            ]);
+
+            $validator = Validator::make($data, [
+                'turma' => ['required'],
+                'nome' => ['required']
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->route('create')
+                    ->withErrors($validator)
+                    ->withInput();
+            };
+
+            $aula->nome_aula = $data['nome'];
+            $aula->id_turma = $data['turma'];
+
+            $aula->save();
+
+            return redirect()->route('aula.index');
+        }
+
+
+
+
+
+
+    }
+>>>>>>> 4e31e88b2f89b6bc2b7ff4f86dfba0efd9b186d5
 
         if($aula){
             $data = $request->only([
@@ -190,9 +225,13 @@ class AulaController extends Controller
     public function destroy(string $id)
     {
         $aula = Aula::find($id);
+<<<<<<< HEAD
         $aula->finalizada = True;
 
         $aula->update();
+=======
+        $aula->delete();
+>>>>>>> 4e31e88b2f89b6bc2b7ff4f86dfba0efd9b186d5
 
         return redirect()->route('aula.index');
 

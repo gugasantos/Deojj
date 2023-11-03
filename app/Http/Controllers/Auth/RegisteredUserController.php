@@ -80,7 +80,6 @@ class RegisteredUserController extends Controller
                 'grau' => $request->grau,
             ]);
         }
-
         event(new Registered($user));
 
         Auth::login($user);

@@ -121,7 +121,11 @@
                     <label class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
                         <input type="submit" value="editar" class="btn btn-success">
+<<<<<<< HEAD
                         <a href="{{route('turma.index')}}" class="btn btn-danger">Voltar</a>
+=======
+                        <a href="#" class="btn btn-danger">Voltar</a>
+>>>>>>> 4e31e88b2f89b6bc2b7ff4f86dfba0efd9b186d5
                     </div>
                 </div>
 
