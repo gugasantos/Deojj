@@ -58,9 +58,10 @@ https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-o
     ```bash
     npm install
     ```
-10.  build
+10. run:
 
-     ```bash
+    ```bash
     npm run build
     ```
+
 11. Exit container and Access http://127.0.0.1:8000
