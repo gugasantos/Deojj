@@ -54,14 +54,11 @@ https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-o
     exit
     ```
 9. install npm:
-
     ```bash
     npm install
     ```
-10. run:
-
+11. run
     ```bash
     npm run build
     ```
-
-11. Exit container and Access http://127.0.0.1:8000
+12. Exit container and Access http://127.0.0.1:8000
