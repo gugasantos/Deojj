@@ -81,47 +81,13 @@ class AulaController extends Controller
 
         $aula->nome_aula = $data['nome'];
         $aula->id_turma = $data['turma'];
-        $aula->finalizada = False;
+        $aula->finalizada = 1;
 
         $aula->save();
 
         return redirect()->route('aula.index');
     }
 
-    public function check_up(string $id)
-    {
-        $search = request('search');
-        $faixa = Faixa::all();
-        $page = True;
-        $turma = Turma::all();
-
-        $teste2 = User::all();
-        $teste = User::where('id_turma',$id)->get();
-        dd($teste);
-
-        if($search){
-            $data = User::where(
-                'name',
-                'like', '%' . $search . '%',
-            )->where('id_turma', $id);
-
-
-            $page = False;
-        }
-        else{
-            $data = User::where('id_turma',$id)->paginate(10);
-        }
-
-
-
-        return view('actions.checkupAula', [
-            'page' => $page,
-            'alunos' => $data,
-            'search' => $search,
-            'faixa' => $faixa,
-            'turmas' => $turma
-        ]);
-    }
     /**
      * Display the specified resource.
      */
@@ -190,7 +156,7 @@ class AulaController extends Controller
     public function destroy(string $id)
     {
         $aula = Aula::find($id);
-        $aula->finalizada = True;
+        $aula->finalizada = 2;
 
         $aula->update();
 
